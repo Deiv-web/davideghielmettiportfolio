@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Davide Ghielmetti</title>
+    <title>Davide Ghielmetti's Portfolio</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <script src="https://unpkg.com/three"></script>
     <script src="https://unpkg.com/globe.gl"></script>
 
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Changed to Roboto font */
+            font-family: 'Roboto', sans-serif;
             background-color: #f4f7f6;
             color: #333;
             margin: 0;
@@ -131,19 +136,25 @@
             font-size: 15px;
             display: flex;
             flex-wrap: wrap;
+            justify-content: center; /* Center contact info to match title */
             gap: 10px 20px;
         }
         .contact-item a {
             color: #0284c7; 
             text-decoration: none;
+            font-weight: 500;
         }
 
         /* Bio Text Styling */
         .bio-text {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #475569;
             margin-bottom: 25px;
             line-height: 1.7;
+            text-align: center; /* Centered Bio */
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Language Grid Styling */
@@ -169,6 +180,9 @@
             font-weight: 700;
             color: #1e293b;
             font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .lang-level {
             color: #64748b;
@@ -212,12 +226,13 @@
             h1 { font-size: 1.5rem; }
             .contact-container {
                 flex-direction: column;
+                align-items: center;
                 gap: 8px;
             }
             .lang-box {
-                flex: 1 1 calc(50% - 12px); /* 2 columns on mobile */
+                flex: 1 1 calc(50% - 12px); 
             }
-            .bio-text { font-size: 1rem; }
+            .bio-text { font-size: 1rem; text-align: left; }
             .nested { padding-left: 15px; }
             .globe-wrapper { height: 350px; }
             .globe-overlay-text { font-size: 1.1rem; }
@@ -227,8 +242,19 @@
 <body>
 
     <div class="container">
-        <h1>Davide Ghielmetti - Interactive Professional Profile</h1>
-        <p><strong>Motto:</strong> "Andare sempre avanti"</p>
+        
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+            <select id="langSwitcher" onchange="changeLanguage(this.value)" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-family: 'Roboto', sans-serif; background: #f8fafc; color: #334155; cursor: pointer; font-size: 14px; font-weight: 500; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                <option value="en">🇬🇧 English</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="fr">🇫🇷 Français</option>
+            </select>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 25px;">
+            <h1 data-translate="title" style="margin-top: 0; margin-bottom: 5px;">Davide Ghielmetti's Portfolio</h1>
+            <p style="margin-top: 0; font-size: 1.1rem; color: #475569;"><strong>Motto:</strong> "Andare sempre avanti"</p>
+        </div>
             
         <div class="contact-container">
             <span class="contact-item"><strong>Email:</strong> <a href="mailto:davide.ghielmetti@gmail.com">davide.ghielmetti@gmail.com</a></span>
@@ -236,46 +262,46 @@
             <span class="contact-item"><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/davide-ghielmetti-033732a5" target="_blank">davide-ghielmetti-033732a5</a></span>
         </div>
 
-        <div class="bio-text">
+        <div class="bio-text" data-translate="bio">
             Hi, and welcome! I am a Master's candidate in International Business who thrives on solving complex problems and optimizing business processes. I combine an analytical mindset with a highly collaborative approach to turn academic knowledge and past experience into real-world solutions.
         </div>
 
         <div class="languages-container">
             <div class="lang-box">
-                <span class="lang-title">Italian</span>
-                <span class="lang-level">Native</span>
+                <span class="lang-title">🇮🇹 Italian</span>
+                <span class="lang-level" data-translate="native">Native</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title">English</span>
-                <span class="lang-level">Fluent</span>
+                <span class="lang-title">🇬🇧 English</span>
+                <span class="lang-level" data-translate="fluent">Fluent</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title">German</span>
-                <span class="lang-level">Fluent</span>
+                <span class="lang-title">🇩🇪 German</span>
+                <span class="lang-level" data-translate="fluent">Fluent</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title">French</span>
-                <span class="lang-level">Fluent</span>
+                <span class="lang-title">🇫🇷 French</span>
+                <span class="lang-level" data-translate="fluent">Fluent</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title">Spanish</span>
-                <span class="lang-level">Intermediate</span>
+                <span class="lang-title">🇪🇸 Spanish</span>
+                <span class="lang-level" data-translate="intermediate">Intermediate</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title">Swiss-German</span>
-                <span class="lang-level">Understanding of the language</span>
+                <span class="lang-title">🇨🇭 Swiss-German</span>
+                <span class="lang-level" data-translate="understanding">Understanding of the language</span>
             </div>
         </div>
 
         <div class="globe-wrapper" id="globeContainer">
-            <div class="globe-overlay-text">International Perspective</div>
+            <div class="globe-overlay-text" data-translate="perspective">International Perspective</div>
             <div id="globeViz" style="width: 100%; height: 100%;"></div>
         </div>
         
-        <p><em>Click on any highlighted category to expand or collapse its contents.</em></p>
+        <p><em data-translate="clickHint">Click on any highlighted category to expand or collapse its contents.</em></p>
 
         <ul id="myUL">
-            <li><span class="caret cat-1">1. Professional Experience</span>
+            <li><span class="caret cat-1" data-translate="cat1">1. Professional Experience</span>
                 <ul class="nested">
                     <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/CERN_logo_badge.svg" alt="CERN Logo" class="org-logo"> CERN (Data & Operations)</span>
                         <ul class="nested">
@@ -299,7 +325,7 @@
                 </ul>
             </li>
 
-            <li><span class="caret cat-2">2. Tech & Digital Innovation</span>
+            <li><span class="caret cat-2" data-translate="cat2">2. Tech & Digital Innovation</span>
                 <ul class="nested">
                     <li><span class="caret sub-cat">Advanced AI Application</span>
                         <ul class="nested">
@@ -319,7 +345,7 @@
                 </ul>
             </li>
 
-            <li><span class="caret cat-3">3. Academic Foundation</span>
+            <li><span class="caret cat-3" data-translate="cat3">3. Academic Foundation</span>
                 <ul class="nested">
                     <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/ZHAW_Logo.svg" alt="ZHAW Logo" class="org-logo"> MSc International Business (ZHAW)</span>
                         <ul class="nested">
@@ -344,7 +370,7 @@
                 </ul>
             </li>
 
-            <li><span class="caret cat-4">4. Consulting & Communication Skills</span>
+            <li><span class="caret cat-4" data-translate="cat4">4. Consulting & Communication Skills</span>
                 <ul class="nested">
                     <li><span class="caret sub-cat">Global Languages</span>
                         <ul class="nested">
@@ -367,7 +393,7 @@
                 </ul>
             </li>
 
-            <li><span class="caret cat-5">5. Personal Drive (The Grit Factor)</span>
+            <li><span class="caret cat-5" data-translate="cat5">5. Personal Drive (The Grit Factor)</span>
                 <ul class="nested">
                     <li><span class="caret sub-cat">Competitive Athletics</span>
                         <ul class="nested">
@@ -387,6 +413,65 @@
     </div>
 
     <script>
+        // --- Translation Dictionary ---
+        const translations = {
+            en: {
+                title: "Davide Ghielmetti's Portfolio",
+                bio: "Hi, and welcome! I am a Master's candidate in International Business who thrives on solving complex problems and optimizing business processes. I combine an analytical mindset with a highly collaborative approach to turn academic knowledge and past experience into real-world solutions.",
+                perspective: "International Perspective",
+                native: "Native",
+                fluent: "Fluent",
+                intermediate: "Intermediate",
+                understanding: "Understanding of the language",
+                clickHint: "Click on any highlighted category to expand or collapse its contents.",
+                cat1: "1. Professional Experience",
+                cat2: "2. Tech & Digital Innovation",
+                cat3: "3. Academic Foundation",
+                cat4: "4. Consulting & Communication Skills",
+                cat5: "5. Personal Drive (The Grit Factor)"
+            },
+            de: {
+                title: "Davide Ghielmettis Portfolio",
+                bio: "Hallo und willkommen! Ich bin Master-Kandidat in International Business, der gerne komplexe Probleme löst und Geschäftsprozesse optimiert. Ich kombiniere eine analytische Denkweise mit einem stark kollaborativen Ansatz, um akademisches Wissen und bisherige Erfahrungen in reale Lösungen umzusetzen.",
+                perspective: "Internationale Perspektive",
+                native: "Muttersprache",
+                fluent: "Fließend",
+                intermediate: "Mittelstufe",
+                understanding: "Verständnis der Sprache",
+                clickHint: "Klicken Sie auf eine markierte Kategorie, um deren Inhalt zu erweitern oder zu reduzieren.",
+                cat1: "1. Berufserfahrung",
+                cat2: "2. Tech & Digitale Innovation",
+                cat3: "3. Akademische Grundlage",
+                cat4: "4. Beratung & Kommunikationsfähigkeiten",
+                cat5: "5. Persönlicher Antrieb (The Grit Factor)"
+            },
+            fr: {
+                title: "Portfolio de Davide Ghielmetti",
+                bio: "Bonjour et bienvenue ! Je suis un candidat à la maîtrise en commerce international qui aime résoudre des problèmes complexes et optimiser les processus commerciaux. Je combine un esprit analytique avec une approche très collaborative pour transformer les connaissances académiques et l'expérience passée en solutions concrètes.",
+                perspective: "Perspective Internationale",
+                native: "Langue maternelle",
+                fluent: "Courant",
+                intermediate: "Intermédiaire",
+                understanding: "Compréhension de la langue",
+                clickHint: "Cliquez sur n'importe quelle catégorie en surbrillance pour développer ou réduire son contenu.",
+                cat1: "1. Expérience Professionnelle",
+                cat2: "2. Technologie et Innovation Numérique",
+                cat3: "3. Fondation Académique",
+                cat4: "4. Conseil et Compétences en Communication",
+                cat5: "5. Motivation Personnelle (Le Grit Factor)"
+            }
+        };
+
+        // --- Change Language Function ---
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+
         // --- Interactive Tree Logic ---
         var toggler = document.getElementsByClassName("caret");
         for (var i = 0; i < toggler.length; i++) {
@@ -403,7 +488,6 @@
         const elem = document.getElementById('globeViz');
         const globeContainer = document.getElementById('globeContainer');
 
-        // Location data 
         const myLocations = [
             { lat: 31.2304, lng: 121.4737, label: 'Shanghai, China' },
             { lat: 42.8021, lng: 13.9488, label: 'Tortoreto Lido, Italy' },
@@ -414,13 +498,11 @@
             { lat: 47.4982, lng: 8.7293, label: 'Winterthur, Switzerland' }
         ];
 
-        // Initialize Globe
         const globe = Globe()
             .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg') 
             .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
             .backgroundColor('rgba(0,0,0,0)') 
             
-            // Re-engineered HTML Elements to guarantee pinpoint accuracy
             .htmlElementsData(myLocations)
             .htmlElement(d => {
                 const el = document.createElement('div');
@@ -431,7 +513,7 @@
                             <circle cx="12" cy="10" r="3" fill="#ffffff"></circle>
                         </svg>
                         
-                        <div style="position: absolute; top: 32px; left: 16px; transform: translateX(-50%); color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; font-weight: 700; white-space: nowrap; text-shadow: 0px 0px 4px #000, 0px 0px 8px #000, 1px 1px 2px #000, -1px -1px 2px #000;">
+                        <div style="position: absolute; top: 32px; left: 16px; transform: translateX(-50%); color: #ffffff; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 700; white-space: nowrap; text-shadow: 0px 0px 4px #000, 0px 0px 8px #000, 1px 1px 2px #000, -1px -1px 2px #000;">
                             ${d.label}
                         </div>
                     </div>
@@ -443,14 +525,12 @@
             .height(globeContainer.clientHeight)
             (elem);
 
-        // --- Custom Globe Tour Script ---
         globe.controls().autoRotate = false;
         globe.controls().enableZoom = true;
 
         let isTouring = true;
         let currentLocationIndex = 0;
 
-        // Stop the tour gracefully if the user touches or clicks the globe
         globeContainer.addEventListener('mousedown', () => isTouring = false);
         globeContainer.addEventListener('touchstart', () => isTouring = false);
 
@@ -472,10 +552,8 @@
             setTimeout(startTour, 2000);
         }
 
-        // Start tour 1 second after page load
         setTimeout(startTour, 1000);
 
-        // Make globe responsive on window resize
         window.addEventListener('resize', () => {
             globe.width(globeContainer.clientWidth);
             globe.height(globeContainer.clientHeight);
