@@ -14,7 +14,6 @@
 
     <style>
         body {
-            /* Changed to Roboto font */
             font-family: 'Roboto', sans-serif;
             background-color: #f4f7f6;
             color: #333;
@@ -106,13 +105,20 @@
             align-items: center;
         }
 
-        /* Logo styling */
+        /* Logo & Image styling */
         .org-logo {
             height: 20px;
             width: 20px;
             object-fit: contain;
             margin-right: 10px;
             border-radius: 3px;
+        }
+        .flag-icon {
+            width: 22px;
+            height: 16px;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
         
         /* Video wrapper styling */
@@ -136,7 +142,7 @@
             font-size: 15px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Center contact info to match title */
+            justify-content: center;
             gap: 10px 20px;
         }
         .contact-item a {
@@ -151,7 +157,7 @@
             color: #475569;
             margin-bottom: 25px;
             line-height: 1.7;
-            text-align: center; /* Centered Bio */
+            text-align: center;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
@@ -182,12 +188,12 @@
             font-size: 1.05rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .lang-level {
             color: #64748b;
             font-size: 0.85rem;
-            margin-top: 3px;
+            margin-top: 5px;
             font-weight: 500;
         }
 
@@ -245,9 +251,9 @@
         
         <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
             <select id="langSwitcher" onchange="changeLanguage(this.value)" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-family: 'Roboto', sans-serif; background: #f8fafc; color: #334155; cursor: pointer; font-size: 14px; font-weight: 500; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                <option value="en">🇬🇧 English</option>
-                <option value="de">🇩🇪 Deutsch</option>
-                <option value="fr">🇫🇷 Français</option>
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
             </select>
         </div>
 
@@ -268,27 +274,27 @@
 
         <div class="languages-container">
             <div class="lang-box">
-                <span class="lang-title">🇮🇹 Italian</span>
+                <span class="lang-title"><img src="https://flagcdn.com/it.svg" alt="Italy" class="flag-icon"> Italian</span>
                 <span class="lang-level" data-translate="native">Native</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title">🇬🇧 English</span>
+                <span class="lang-title"><img src="https://flagcdn.com/gb.svg" alt="UK" class="flag-icon"> English</span>
                 <span class="lang-level" data-translate="fluent">Fluent</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title">🇩🇪 German</span>
+                <span class="lang-title"><img src="https://flagcdn.com/de.svg" alt="Germany" class="flag-icon"> German</span>
                 <span class="lang-level" data-translate="fluent">Fluent</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title">🇫🇷 French</span>
+                <span class="lang-title"><img src="https://flagcdn.com/fr.svg" alt="France" class="flag-icon"> French</span>
                 <span class="lang-level" data-translate="fluent">Fluent</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title">🇪🇸 Spanish</span>
+                <span class="lang-title"><img src="https://flagcdn.com/es.svg" alt="Spain" class="flag-icon"> Spanish</span>
                 <span class="lang-level" data-translate="intermediate">Intermediate</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title">🇨🇭 Swiss-German</span>
+                <span class="lang-title"><img src="https://flagcdn.com/ch.svg" alt="Switzerland" class="flag-icon"> Swiss-German</span>
                 <span class="lang-level" data-translate="understanding">Understanding of the language</span>
             </div>
         </div>
