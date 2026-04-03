@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Mind Map: Davide Ghielmetti</title>
+    <title>Davide Ghielmetti</title>
     
     <script src="https://unpkg.com/three"></script>
     <script src="https://unpkg.com/globe.gl"></script>
@@ -125,7 +125,7 @@
 
         /* Contact Details Layout */
         .contact-container {
-            margin-bottom: 25px; 
+            margin-bottom: 20px; 
             padding-bottom: 15px; 
             border-bottom: 1px solid #e2e8f0; 
             font-size: 15px;
@@ -136,6 +136,45 @@
         .contact-item a {
             color: #0284c7; 
             text-decoration: none;
+        }
+
+        /* Bio Text Styling */
+        .bio-text {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        /* Language Grid Styling */
+        .languages-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+        .lang-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #0284c7;
+            padding: 12px 16px;
+            border-radius: 6px;
+            flex: 1 1 calc(33.333% - 12px);
+            min-width: 140px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+        }
+        .lang-title {
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 1.05rem;
+        }
+        .lang-level {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 3px;
+            font-weight: 500;
         }
 
         /* 3D Globe Container */
@@ -175,6 +214,10 @@
                 flex-direction: column;
                 gap: 8px;
             }
+            .lang-box {
+                flex: 1 1 calc(50% - 12px); /* 2 columns on mobile */
+            }
+            .bio-text { font-size: 1rem; }
             .nested { padding-left: 15px; }
             .globe-wrapper { height: 350px; }
             .globe-overlay-text { font-size: 1.1rem; }
@@ -191,6 +234,37 @@
             <span class="contact-item"><strong>Email:</strong> <a href="mailto:davide.ghielmetti@gmail.com">davide.ghielmetti@gmail.com</a></span>
             <span class="contact-item"><strong>Phone:</strong> <a href="tel:+393519635441">+39 351 963 5441</a></span>
             <span class="contact-item"><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/davide-ghielmetti-033732a5" target="_blank">davide-ghielmetti-033732a5</a></span>
+        </div>
+
+        <div class="bio-text">
+            Hi, and welcome! I am a Master's candidate in International Business who thrives on solving complex problems and optimizing business processes. I combine an analytical mindset with a highly collaborative approach to turn academic knowledge and past experience into real-world solutions.
+        </div>
+
+        <div class="languages-container">
+            <div class="lang-box">
+                <span class="lang-title">Italian</span>
+                <span class="lang-level">Native</span>
+            </div>
+            <div class="lang-box">
+                <span class="lang-title">English</span>
+                <span class="lang-level">Fluent</span>
+            </div>
+            <div class="lang-box">
+                <span class="lang-title">German</span>
+                <span class="lang-level">Fluent</span>
+            </div>
+            <div class="lang-box">
+                <span class="lang-title">French</span>
+                <span class="lang-level">Fluent</span>
+            </div>
+            <div class="lang-box">
+                <span class="lang-title">Spanish</span>
+                <span class="lang-level">Intermediate</span>
+            </div>
+            <div class="lang-box">
+                <span class="lang-title">Swiss-German</span>
+                <span class="lang-level">Understanding of the language</span>
+            </div>
         </div>
 
         <div class="globe-wrapper" id="globeContainer">
@@ -350,9 +424,6 @@
             .htmlElementsData(myLocations)
             .htmlElement(d => {
                 const el = document.createElement('div');
-                // The main container sits exactly at 0,0 for the coordinate.
-                // We use absolute positioning to shift the SVG left by 16px (half its width) and up by 32px (its full height).
-                // This forces the absolute bottom-center tip of the pin to perfectly lock onto the coordinate.
                 el.innerHTML = `
                     <div style="position: absolute; left: -16px; top: -32px; pointer-events: none;">
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" style="filter: drop-shadow(0px 4px 3px rgba(0,0,0,0.6)); display: block;">
@@ -373,7 +444,7 @@
             (elem);
 
         // --- Custom Globe Tour Script ---
-        globe.controls().autoRotate = false; // Disable default spin to use our custom tour
+        globe.controls().autoRotate = false;
         globe.controls().enableZoom = true;
 
         let isTouring = true;
@@ -388,22 +459,16 @@
             
             const loc = myLocations[currentLocationIndex];
             
-            // 1. Calculate distance from the PREVIOUS location to determine how far the camera traveled
             let prevIndex = currentLocationIndex === 0 ? myLocations.length - 1 : currentLocationIndex - 1;
             const prevLoc = myLocations[prevIndex];
             const dist = Math.sqrt(Math.pow(loc.lat - prevLoc.lat, 2) + Math.pow(loc.lng - prevLoc.lng, 2));
             
-            // 2. Dynamic Altitude Math: 
-            // If the distance is small (e.g. within Europe), altitude drops down to 0.4 (Zoomed In).
-            // If the distance is huge (e.g. China to Italy), altitude raises to 1.5 (Zoomed Out).
             const dynamicAltitude = Math.max(0.4, Math.min(1.5, dist * 0.06));
             
-            // 3. Transition camera to the new coordinates over 1 second (1000ms)
             globe.pointOfView({ lat: loc.lat, lng: loc.lng, altitude: dynamicAltitude }, 1000);
             
             currentLocationIndex = (currentLocationIndex + 1) % myLocations.length;
             
-            // 4. Trigger the next flight after 2 seconds (1s flight time + 1s pause at the location)
             setTimeout(startTour, 2000);
         }
 
