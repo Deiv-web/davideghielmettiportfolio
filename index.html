@@ -142,11 +142,11 @@
         .globe-wrapper {
             position: relative;
             width: 100%;
-            height: 450px; /* Slightly taller to give the labels room */
+            height: 450px; 
             border-radius: 12px;
             overflow: hidden;
             margin-bottom: 30px;
-            background-color: #0f172a; /* Deep techy blue/black */
+            background-color: #0f172a; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         .globe-overlay-text {
@@ -325,7 +325,7 @@
         const elem = document.getElementById('globeViz');
         const globeContainer = document.getElementById('globeContainer');
 
-        // Location data (Lat/Lng for all your cities)
+        // Location data 
         const myLocations = [
             { lat: 31.2304, lng: 121.4737, label: 'Shanghai, China' },
             { lat: 42.8021, lng: 13.9488, label: 'Tortoreto Lido, Italy' },
@@ -338,21 +338,29 @@
 
         // Initialize Globe
         const globe = Globe()
-            // 1. Changed to a brighter daytime earth image
             .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg') 
-            // Adds a nice 3D texture to mountains
             .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
             .backgroundColor('rgba(0,0,0,0)') 
             
-            // 2. Switched from pointsData to labelsData for permanent text visibility
-            .labelsData(myLocations)
-            .labelLat('lat')
-            .labelLng('lng')
-            .labelText('label')
-            .labelSize(1.6) // Size of the text
-            .labelDotRadius(0.6) // Size of the dot marking the city
-            .labelColor(() => '#00f6ff') // A bright neon cyan for maximum contrast
-            .labelResolution(2)
+            // Replaced default points/labels with custom HTML Elements
+            .htmlElementsData(myLocations)
+            .htmlElement(d => {
+                const el = document.createElement('div');
+                // Transform ensures the bottom tip of the pin aligns exactly with the coordinates
+                el.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; transform: translate(-50%, -100%); pointer-events: none;">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" style="filter: drop-shadow(0px 4px 3px rgba(0,0,0,0.6));">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3" fill="#ffffff"></circle>
+                        </svg>
+                        
+                        <div style="color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; font-weight: 700; margin-top: -2px; text-shadow: 0px 0px 4px #000, 0px 0px 8px #000, 1px 1px 2px #000, -1px -1px 2px #000;">
+                            ${d.label}
+                        </div>
+                    </div>
+                `;
+                return el;
+            })
             
             .width(globeContainer.clientWidth)
             .height(globeContainer.clientHeight)
@@ -363,7 +371,7 @@
         globe.controls().autoRotateSpeed = 1.2;
         globe.controls().enableZoom = true;
         
-        // Focus on Europe initially so most of your pins are visible at load
+        // Focus on Europe initially
         globe.pointOfView({ lat: 45, lng: 15, altitude: 2 });
 
         // Make globe responsive on window resize
