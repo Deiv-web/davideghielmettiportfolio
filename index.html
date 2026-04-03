@@ -197,7 +197,15 @@
             font-weight: 500;
         }
 
-        /* Hobbies Grid Styling */
+        /* Hobbies Bento Box Styling - Added a specific container for polish */
+        .hobbies-section-container {
+            margin-top: 60px;
+            padding: 30px;
+            background-color: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
         .hobbies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -260,18 +268,19 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* portfolio-footer Styling for modern design and UX friendliness */
+        /* --- Footer Styling for modern design and UX friendliness --- */
         .portfolio-footer {
             text-align: center;
             margin-top: 50px;
-            padding: 40px;
+            padding: 50px 40px;
             border-top: 1px solid #e2e8f0;
             background-color: #f8fafc;
             border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .footer-photo-container {
-            display: flex;
-            justify-content: center;
             margin-bottom: 30px;
         }
         .footer-photo {
@@ -286,11 +295,13 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
+            width: 100%;
+            max-width: 800px;
         }
         .footer-contact-card {
             background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 20px 25px;
+            border-radius: 12px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.03);
             flex: 1 1 calc(33.333% - 20px);
             min-width: 250px;
@@ -307,9 +318,9 @@
             background-color: #f0f9ff;
         }
         .footer-contact-icon {
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
+            width: 44px;
+            height: 44px;
+            margin-right: 18px;
             color: #0284c7;
             flex-shrink: 0;
         }
@@ -318,15 +329,15 @@
             flex-direction: column;
         }
         .footer-contact-label {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #64748b;
             font-weight: 500;
         }
         .footer-contact-value {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #1e293b;
             font-weight: 700;
-            word-break: break-word;
+            word-break: break-all;
         }
 
         /* --- MOBILE OPTIMIZATION --- */
@@ -346,8 +357,9 @@
             .nested { padding-left: 15px; }
             .globe-wrapper { height: 350px; }
             .globe-overlay-text { font-size: 1.1rem; }
+            .hobbies-section-container { padding: 20px; margin-top: 40px; }
             .hobbies-grid { grid-template-columns: 1fr; }
-            .footer-contact-card { flex: 1 1 100%; text-align: left; }
+            .footer-contact-card { flex: 1 1 100%; }
             .footer-photo { width: 150px; }
         }
     </style>
@@ -525,27 +537,30 @@
             </li>
         </ul>
 
-        <h2 style="text-align: center; margin-top: 50px; margin-bottom: 20px;" data-translate="hobbies_title">Passions & Hobbies</h2>
-        <div class="hobbies-grid">
-            <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1541625602330-2277a1cd43a7?auto=format&fit=crop&w=600&q=80');">
-                <div class="hobby-overlay"><span data-translate="hob_sports">Cycling & Running (Sports)</span></div>
-            </div>
-            <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1510915361894-faa8b6d8f85f?auto=format&fit=crop&w=600&q=80');">
-                <div class="hobby-overlay"><span data-translate="hob_guitar">Playing Guitar</span></div>
-            </div>
-            <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80');">
-                <div class="hobby-overlay"><span data-translate="hob_tech">Tech & Engineering</span></div>
-            </div>
-            <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1532974297617-c0f05fe48bff?auto=format&fit=crop&w=600&q=80');">
-                <div class="hobby-overlay"><span data-translate="hob_motor">Motorsports</span></div>
-            </div>
-            <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=600&q=80');">
-                <div class="hobby-overlay"><span data-translate="hob_neuro">Neuroscience</span></div>
+        <div class="hobbies-section-container">
+            <h2 style="text-align: center; margin-top: 0; margin-bottom: 25px;" data-translate="hobbies_title">Passions & Hobbies</h2>
+            
+            <div class="hobbies-grid">
+                <div class="hobby-card" style="background-image: url('cycling.jpg');">
+                    <div class="hobby-overlay"><span data-translate="hob_sports">Competitive Cycling & Running</span></div>
+                </div>
+                <div class="hobby-card" style="background-image: url('guitar.jpg');">
+                    <div class="hobby-overlay"><span data-translate="hob_guitar">Playing Guitar</span></div>
+                </div>
+                <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80');">
+                    <div class="hobby-overlay"><span data-translate="hob_tech">Tech & Engineering</span></div>
+                </div>
+                <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1532974297617-c0f05fe48bff?auto=format&fit=crop&w=600&q=80');">
+                    <div class="hobby-overlay"><span data-translate="hob_motor">Motorsports</span></div>
+                </div>
+                <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=600&q=80');">
+                    <div class="hobby-overlay"><span data-translate="hob_neuro">Neuroscience</span></div>
+                </div>
             </div>
         </div>
 
         <div class="portfolio-footer">
-            <h2 data-translate="footer_title">Let's Connect</h2>
+            <h2 style="margin-top: 0; margin-bottom: 30px;" data-translate="footer_title">Let's Connect</h2>
             <div class="footer-photo-container">
                 <img src="image_7.png" alt="Davide Ghielmetti Photo" class="footer-photo">
             </div>
@@ -600,7 +615,7 @@
                 native: "Native", fluent: "Fluent", intermediate: "Intermediate", understanding: "Understanding of the language",
                 
                 hobbies_title: "Passions & Hobbies",
-                hob_sports: "Cycling & Running (Sports)", hob_guitar: "Playing Guitar", hob_tech: "Tech & Engineering", hob_motor: "Motorsports", hob_neuro: "Neuroscience",
+                hob_sports: "Competitive Cycling & Running", hob_guitar: "Playing Guitar", hob_tech: "Tech & Engineering", hob_motor: "Motorsports", hob_neuro: "Neuroscience",
                 
                 perspective: "My International experience",
                 clickHint: "Click on any highlighted category to expand or collapse its contents.",
@@ -649,7 +664,7 @@
                 grit_mech: "Hands On Technical Skills",
                 mech_1: "4 years of experience as a Bicycle Mechanic",
                 mech_2: "Strong attention to detail and practical problem solving",
-
+                
                 footer_title: "Let's Connect", footer_email_label: "Email", footer_phone_label: "Phone", footer_linkedin_label: "LinkedIn"
             },
             de: {
@@ -664,7 +679,7 @@
                 native: "Muttersprache", fluent: "Fließend", intermediate: "Mittelstufe", understanding: "Verständnis der Sprache",
                 
                 hobbies_title: "Leidenschaften & Hobbys",
-                hob_sports: "Radfahren & Laufen (Sport)", hob_guitar: "Gitarre spielen", hob_tech: "Tech & Ingenieurwesen", hob_motor: "Motorsport", hob_neuro: "Neurowissenschaften",
+                hob_sports: "Wettkampfsport Radfahren & Laufen", hob_guitar: "Gitarre spielen", hob_tech: "Tech & Ingenieurwesen", hob_motor: "Motorsport", hob_neuro: "Neurowissenschaften",
                 
                 perspective: "Meine internationale Erfahrung",
                 clickHint: "Klicken Sie auf eine markierte Kategorie, um deren Inhalt zu erweitern oder zu reduzieren.",
@@ -713,7 +728,7 @@
                 grit_mech: "Praktische technische Fähigkeiten",
                 mech_1: "4 Jahre Erfahrung als Fahrradmechaniker",
                 mech_2: "Starke Liebe zum Detail und praktische Problemlösung",
-
+                
                 footer_title: "Verbinden wir uns", footer_email_label: "E-Mail", footer_phone_label: "Telefon", footer_linkedin_label: "LinkedIn"
             },
             fr: {
@@ -728,7 +743,7 @@
                 native: "Langue maternelle", fluent: "Courant", intermediate: "Intermédiaire", understanding: "Compréhension de la langue",
                 
                 hobbies_title: "Passions & Loisirs",
-                hob_sports: "Cyclisme & Course à pied", hob_guitar: "Guitare", hob_tech: "Tech & Ingénierie", hob_motor: "Sports mécaniques", hob_neuro: "Neurosciences",
+                hob_sports: "Course et Cyclisme Compétitifs", hob_guitar: "Guitare", hob_tech: "Tech & Ingénierie", hob_motor: "Sports mécaniques", hob_neuro: "Neurosciences",
                 
                 perspective: "Mon expérience internationale",
                 clickHint: "Cliquez sur n'importe quelle catégorie en surbrillance pour développer ou réduire son contenu.",
@@ -777,7 +792,7 @@
                 grit_mech: "Compétences techniques pratiques",
                 mech_1: "4 ans d'expérience en tant que mécanicien de vélos",
                 mech_2: "Grande attention aux détails et résolution pratique de problèmes",
-
+                
                 footer_title: "Connectons-nous", footer_email_label: "E-mail", footer_phone_label: "Téléphone", footer_linkedin_label: "LinkedIn"
             }
         };
