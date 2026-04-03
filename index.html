@@ -197,6 +197,41 @@
             font-weight: 500;
         }
 
+        /* Hobbies Grid Styling */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .hobby-card {
+            height: 140px;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hobby-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        .hobby-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            padding: 15px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: flex-end;
+            height: 100%;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
         /* 3D Globe Container */
         .globe-wrapper {
             position: relative;
@@ -242,6 +277,7 @@
             .nested { padding-left: 15px; }
             .globe-wrapper { height: 350px; }
             .globe-overlay-text { font-size: 1.1rem; }
+            .hobbies-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -259,12 +295,12 @@
 
         <div style="text-align: center; margin-bottom: 25px;">
             <h1 data-translate="title" style="margin-top: 0; margin-bottom: 5px;">Davide Ghielmetti's Portfolio</h1>
-            <p style="margin-top: 0; font-size: 1.1rem; color: #475569;"><strong>Motto:</strong> "Andare sempre avanti"</p>
+            <p style="margin-top: 0; font-size: 1.1rem; color: #475569;"><strong data-translate="motto_label">Motto:</strong> "<span data-translate="motto">Andare sempre avanti</span>"</p>
         </div>
             
         <div class="contact-container">
             <span class="contact-item"><strong>Email:</strong> <a href="mailto:davide.ghielmetti@gmail.com">davide.ghielmetti@gmail.com</a></span>
-            <span class="contact-item"><strong>Phone:</strong> <a href="tel:+393519635441">+39 351 963 5441</a></span>
+            <span class="contact-item"><strong data-translate="phone_label">Phone:</strong> <a href="tel:+393519635441">+39 351 963 5441</a></span>
             <span class="contact-item"><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/davide-ghielmetti-033732a5" target="_blank">davide-ghielmetti-033732a5</a></span>
         </div>
 
@@ -274,28 +310,47 @@
 
         <div class="languages-container">
             <div class="lang-box">
-                <span class="lang-title"><img src="https://flagcdn.com/it.svg" alt="Italy" class="flag-icon"> Italian</span>
+                <span class="lang-title"><img src="https://flagcdn.com/it.svg" alt="Italy" class="flag-icon"> <span data-translate="lang_it">Italian</span></span>
                 <span class="lang-level" data-translate="native">Native</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title"><img src="https://flagcdn.com/gb.svg" alt="UK" class="flag-icon"> English</span>
+                <span class="lang-title"><img src="https://flagcdn.com/gb.svg" alt="UK" class="flag-icon"> <span data-translate="lang_en">English</span></span>
                 <span class="lang-level" data-translate="fluent">Fluent</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title"><img src="https://flagcdn.com/de.svg" alt="Germany" class="flag-icon"> German</span>
+                <span class="lang-title"><img src="https://flagcdn.com/de.svg" alt="Germany" class="flag-icon"> <span data-translate="lang_de">German</span></span>
                 <span class="lang-level" data-translate="fluent">Fluent</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title"><img src="https://flagcdn.com/fr.svg" alt="France" class="flag-icon"> French</span>
+                <span class="lang-title"><img src="https://flagcdn.com/fr.svg" alt="France" class="flag-icon"> <span data-translate="lang_fr">French</span></span>
                 <span class="lang-level" data-translate="fluent">Fluent</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title"><img src="https://flagcdn.com/es.svg" alt="Spain" class="flag-icon"> Spanish</span>
+                <span class="lang-title"><img src="https://flagcdn.com/es.svg" alt="Spain" class="flag-icon"> <span data-translate="lang_es">Spanish</span></span>
                 <span class="lang-level" data-translate="intermediate">Intermediate</span>
             </div>
             <div class="lang-box">
-                <span class="lang-title"><img src="https://flagcdn.com/ch.svg" alt="Switzerland" class="flag-icon"> Swiss-German</span>
+                <span class="lang-title"><img src="https://flagcdn.com/ch.svg" alt="Switzerland" class="flag-icon"> <span data-translate="lang_ch">Swiss-German</span></span>
                 <span class="lang-level" data-translate="understanding">Understanding of the language</span>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; margin-top: 50px; margin-bottom: 20px;" data-translate="hobbies_title">Passions & Hobbies</h2>
+        <div class="hobbies-grid">
+            <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=600&q=80');">
+                <div class="hobby-overlay"><span data-translate="hob_sports">Cycling & Running (Sports)</span></div>
+            </div>
+            <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1510915361894-faa8b6d8f85f?auto=format&fit=crop&w=600&q=80');">
+                <div class="hobby-overlay"><span data-translate="hob_guitar">Playing Guitar</span></div>
+            </div>
+            <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80');">
+                <div class="hobby-overlay"><span data-translate="hob_tech">Tech & Engineering</span></div>
+            </div>
+            <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1532974297617-c0f05fe48bff?auto=format&fit=crop&w=600&q=80');">
+                <div class="hobby-overlay"><span data-translate="hob_motor">Motorsports</span></div>
+            </div>
+            <div class="hobby-card" style="background-image: url('https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=600&q=80');">
+                <div class="hobby-overlay"><span data-translate="hob_neuro">Neuroscience</span></div>
             </div>
         </div>
 
@@ -309,23 +364,23 @@
         <ul id="myUL">
             <li><span class="caret cat-1" data-translate="cat1">1. Professional Experience</span>
                 <ul class="nested">
-                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/CERN_logo_badge.svg" alt="CERN Logo" class="org-logo"> CERN (Data & Operations)</span>
+                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/CERN_logo_badge.svg" alt="CERN Logo" class="org-logo"> <span data-translate="exp_cern">CERN (Data & Operations)</span></span>
                         <ul class="nested">
-                            <li class="leaf">Managed complex digital ecosystem with over 35,000 suppliers</li>
-                            <li class="leaf">Developed KPIs using MS Power BI</li>
-                            <li class="leaf">Translated large datasets into actionable stakeholder insights</li>
+                            <li class="leaf" data-translate="cern_1">Managed complex digital ecosystem with over 35,000 suppliers</li>
+                            <li class="leaf" data-translate="cern_2">Developed KPIs using MS Power BI</li>
+                            <li class="leaf" data-translate="cern_3">Translated large datasets into actionable stakeholder insights</li>
                         </ul>
                     </li>
-                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/d/db/KPMG_blue_logo.svg" alt="KPMG Logo" class="org-logo"> KPMG (Financial Rigor & Compliance)</span>
+                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/d/db/KPMG_blue_logo.svg" alt="KPMG Logo" class="org-logo"> <span data-translate="exp_kpmg">KPMG (Financial Rigor & Compliance)</span></span>
                         <ul class="nested">
-                            <li class="leaf">Prepared audit documentation and work papers to support accounting controls</li>
-                            <li class="leaf">Formalized and verified financial statements and related documentation</li>
+                            <li class="leaf" data-translate="kpmg_1">Prepared audit documentation and work papers to support accounting controls</li>
+                            <li class="leaf" data-translate="kpmg_2">Formalized and verified financial statements and related documentation</li>
                         </ul>
                     </li>
-                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/USI_Logo.svg" alt="USI Logo" class="org-logo" style="background-color: white; padding: 2px;"> USI (Research & Analysis)</span>
+                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/USI_Logo.svg" alt="USI Logo" class="org-logo" style="background-color: white; padding: 2px;"> <span data-translate="exp_usi">USI (Research & Analysis)</span></span>
                         <ul class="nested">
-                            <li class="leaf">Conducted hypothesis driven research</li>
-                            <li class="leaf">Collected data and performed behavioral analysis</li>
+                            <li class="leaf" data-translate="usi_1">Conducted hypothesis driven research</li>
+                            <li class="leaf" data-translate="usi_2">Collected data and performed behavioral analysis</li>
                         </ul>
                     </li>
                 </ul>
@@ -333,19 +388,19 @@
 
             <li><span class="caret cat-2" data-translate="cat2">2. Tech & Digital Innovation</span>
                 <ul class="nested">
-                    <li><span class="caret sub-cat">Advanced AI Application</span>
+                    <li><span class="caret sub-cat" data-translate="tech_ai">Advanced AI Application</span>
                         <ul class="nested">
-                            <li class="leaf">Proficient with Large Language Models (LLMs) and prompt engineering</li>
-                            <li class="leaf">Experienced with Agentic AI Tools and Digital Twins workflows</li>
-                            <li class="leaf">Critical awareness of AI limitations like hallucinations and data privacy</li>
+                            <li class="leaf" data-translate="ai_1">Proficient with Large Language Models (LLMs) and prompt engineering</li>
+                            <li class="leaf" data-translate="ai_2">Experienced with Agentic AI Tools and Digital Twins workflows</li>
+                            <li class="leaf" data-translate="ai_3">Critical awareness of AI limitations like hallucinations and data privacy</li>
                         </ul>
                     </li>
-                    <li><span class="caret sub-cat">Business Design & Software Stack</span>
+                    <li><span class="caret sub-cat" data-translate="tech_biz">Business Design & Software Stack</span>
                         <ul class="nested">
-                            <li class="leaf">Completed Innosuisse Business Concept Start Up Training</li>
-                            <li class="leaf">Skilled in business model design and digital product validation</li>
-                            <li class="leaf">Skilled in: MS Power BI, Confluence, Qualtrics, Adobe Suite, Canva, Editing softwares</li>
-                            <li class="leaf">Base knowledge of: HTML, RStudio, DAX</li>
+                            <li class="leaf" data-translate="biz_1">Completed Innosuisse Business Concept Start Up Training</li>
+                            <li class="leaf" data-translate="biz_2">Skilled in business model design and digital product validation</li>
+                            <li class="leaf" data-translate="biz_3">Skilled in: MS Power BI, Confluence, Qualtrics, Adobe Suite, Canva, Editing softwares</li>
+                            <li class="leaf" data-translate="biz_4">Base knowledge of: HTML, RStudio, DAX</li>
                         </ul>
                     </li>
                 </ul>
@@ -353,10 +408,10 @@
 
             <li><span class="caret cat-3" data-translate="cat3">3. Academic Foundation</span>
                 <ul class="nested">
-                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/ZHAW_Logo.svg" alt="ZHAW Logo" class="org-logo"> MSc International Business (ZHAW)</span>
+                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/ZHAW_Logo.svg" alt="ZHAW Logo" class="org-logo"> <span data-translate="acad_zhaw">MSc International Business (ZHAW)</span></span>
                         <ul class="nested">
-                            <li class="leaf">Focus on Strategic Management and Organizational Transformation</li>
-                            <li class="leaf">Solved real world consulting cases with Accenture, Horváth, and Mammut</li>
+                            <li class="leaf" data-translate="zhaw_1">Focus on Strategic Management and Organizational Transformation</li>
+                            <li class="leaf" data-translate="zhaw_2">Solved real world consulting cases with Accenture, Horváth, and Mammut</li>
                             <li class="video-wrapper">
                                 <a href="https://www.youtube.com/watch?v=8OxW1bwaPZw" target="_blank" style="display: inline-block; position: relative; text-decoration: none; width: 100%; max-width: 400px;">
                                     <img src="https://img.youtube.com/vi/8OxW1bwaPZw/maxresdefault.jpg" alt="ZHAW MSc International Business Video" class="video-thumbnail">
@@ -367,10 +422,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/USI_Logo.svg" alt="USI Logo" class="org-logo" style="background-color: white; padding: 2px;"> BSc Economics (USI)</span>
+                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/USI_Logo.svg" alt="USI Logo" class="org-logo" style="background-color: white; padding: 2px;"> <span data-translate="acad_usi">BSc Economics (USI)</span></span>
                         <ul class="nested">
-                            <li class="leaf">Awarded Top 5 Merit Scholarship from the Faculty of Economics</li>
-                            <li class="leaf">Specialization in Management</li>
+                            <li class="leaf" data-translate="usi_bsc_1">Awarded Top 5 Merit Scholarship from the Faculty of Economics</li>
+                            <li class="leaf" data-translate="usi_bsc_2">Specialization in Management</li>
                         </ul>
                     </li>
                 </ul>
@@ -378,22 +433,22 @@
 
             <li><span class="caret cat-4" data-translate="cat4">4. Consulting & Communication Skills</span>
                 <ul class="nested">
-                    <li><span class="caret sub-cat">Global Languages</span>
+                    <li><span class="caret sub-cat" data-translate="skill_lang">Global Languages</span>
                         <ul class="nested">
-                            <li class="leaf">Italian: Native</li>
-                            <li class="leaf">English: Fluent</li>
-                            <li class="leaf">German: Fluent</li>
-                            <li class="leaf">French: Fluent</li>
-                            <li class="leaf">Spanish: Intermediate</li>
-                            <li class="leaf">Swiss-German: Understanding of the language</li>
+                            <li class="leaf" data-translate="lang_1">Italian: Native</li>
+                            <li class="leaf" data-translate="lang_2">English: Fluent</li>
+                            <li class="leaf" data-translate="lang_3">German: Fluent</li>
+                            <li class="leaf" data-translate="lang_4">French: Fluent</li>
+                            <li class="leaf" data-translate="lang_5">Spanish: Intermediate</li>
+                            <li class="leaf" data-translate="lang_6">Swiss-German: Understanding of the language</li>
                         </ul>
                     </li>
-                    <li><span class="caret sub-cat">Soft Skills</span>
+                    <li><span class="caret sub-cat" data-translate="skill_soft">Soft Skills</span>
                         <ul class="nested">
-                            <li class="leaf">Cross cultural stakeholder management</li>
-                            <li class="leaf">Process optimization mindset</li>
-                            <li class="leaf">Clear and hypothesis driven communication</li>
-                            <li class="leaf">Proven team leadership</li>
+                            <li class="leaf" data-translate="soft_1">Cross cultural stakeholder management</li>
+                            <li class="leaf" data-translate="soft_2">Process optimization mindset</li>
+                            <li class="leaf" data-translate="soft_3">Clear and hypothesis driven communication</li>
+                            <li class="leaf" data-translate="soft_4">Proven team leadership</li>
                         </ul>
                     </li>
                 </ul>
@@ -401,16 +456,16 @@
 
             <li><span class="caret cat-5" data-translate="cat5">5. Personal Drive (The Grit Factor)</span>
                 <ul class="nested">
-                    <li><span class="caret sub-cat">Competitive Athletics</span>
+                    <li><span class="caret sub-cat" data-translate="grit_ath">Competitive Athletics</span>
                         <ul class="nested">
-                            <li class="leaf">Active Mountain Bike Racer and Cross Country Runner</li>
-                            <li class="leaf">Instills resilience, discipline, and structured preparation</li>
+                            <li class="leaf" data-translate="ath_1">Active Mountain Bike Racer and Cross Country Runner</li>
+                            <li class="leaf" data-translate="ath_2">Instills resilience, discipline, and structured preparation</li>
                         </ul>
                     </li>
-                    <li><span class="caret sub-cat">Hands On Technical Skills</span>
+                    <li><span class="caret sub-cat" data-translate="grit_mech">Hands On Technical Skills</span>
                         <ul class="nested">
-                            <li class="leaf">4 years of experience as a Bicycle Mechanic</li>
-                            <li class="leaf">Strong attention to detail and practical problem solving</li>
+                            <li class="leaf" data-translate="mech_1">4 years of experience as a Bicycle Mechanic</li>
+                            <li class="leaf" data-translate="mech_2">Strong attention to detail and practical problem solving</li>
                         </ul>
                     </li>
                 </ul>
@@ -419,52 +474,190 @@
     </div>
 
     <script>
-        // --- Translation Dictionary ---
+        // --- Full Translation Dictionary ---
         const translations = {
             en: {
                 title: "Davide Ghielmetti's Portfolio",
+                motto_label: "Motto:",
+                motto: "Andare sempre avanti",
+                phone_label: "Phone:",
                 bio: "Hi, and welcome! I am a Master's candidate in International Business who thrives on solving complex problems and optimizing business processes. I combine an analytical mindset with a highly collaborative approach to turn academic knowledge and past experience into real-world solutions.",
+                
+                lang_it: "Italian", lang_en: "English", lang_de: "German", lang_fr: "French", lang_es: "Spanish", lang_ch: "Swiss-German",
+                native: "Native", fluent: "Fluent", intermediate: "Intermediate", understanding: "Understanding of the language",
+                
+                hobbies_title: "Passions & Hobbies",
+                hob_sports: "Cycling & Running (Sports)", hob_guitar: "Playing Guitar", hob_tech: "Tech & Engineering", hob_motor: "Motorsports", hob_neuro: "Neuroscience",
+                
                 perspective: "International Perspective",
-                native: "Native",
-                fluent: "Fluent",
-                intermediate: "Intermediate",
-                understanding: "Understanding of the language",
                 clickHint: "Click on any highlighted category to expand or collapse its contents.",
+                
                 cat1: "1. Professional Experience",
+                exp_cern: "CERN (Data & Operations)",
+                cern_1: "Managed complex digital ecosystem with over 35,000 suppliers",
+                cern_2: "Developed KPIs using MS Power BI",
+                cern_3: "Translated large datasets into actionable stakeholder insights",
+                exp_kpmg: "KPMG (Financial Rigor & Compliance)",
+                kpmg_1: "Prepared audit documentation and work papers to support accounting controls",
+                kpmg_2: "Formalized and verified financial statements and related documentation",
+                exp_usi: "USI (Research & Analysis)",
+                usi_1: "Conducted hypothesis driven research",
+                usi_2: "Collected data and performed behavioral analysis",
+                
                 cat2: "2. Tech & Digital Innovation",
+                tech_ai: "Advanced AI Application",
+                ai_1: "Proficient with Large Language Models (LLMs) and prompt engineering",
+                ai_2: "Experienced with Agentic AI Tools and Digital Twins workflows",
+                ai_3: "Critical awareness of AI limitations like hallucinations and data privacy",
+                tech_biz: "Business Design & Software Stack",
+                biz_1: "Completed Innosuisse Business Concept Start Up Training",
+                biz_2: "Skilled in business model design and digital product validation",
+                biz_3: "Skilled in: MS Power BI, Confluence, Qualtrics, Adobe Suite, Canva, Editing softwares",
+                biz_4: "Base knowledge of: HTML, RStudio, DAX",
+                
                 cat3: "3. Academic Foundation",
+                acad_zhaw: "MSc International Business (ZHAW)",
+                zhaw_1: "Focus on Strategic Management and Organizational Transformation",
+                zhaw_2: "Solved real world consulting cases with Accenture, Horváth, and Mammut",
+                acad_usi: "BSc Economics (USI)",
+                usi_bsc_1: "Awarded Top 5 Merit Scholarship from the Faculty of Economics",
+                usi_bsc_2: "Specialization in Management",
+                
                 cat4: "4. Consulting & Communication Skills",
-                cat5: "5. Personal Drive (The Grit Factor)"
+                skill_lang: "Global Languages",
+                lang_1: "Italian: Native", lang_2: "English: Fluent", lang_3: "German: Fluent", lang_4: "French: Fluent", lang_5: "Spanish: Intermediate", lang_6: "Swiss-German: Understanding of the language",
+                skill_soft: "Soft Skills",
+                soft_1: "Cross cultural stakeholder management", soft_2: "Process optimization mindset", soft_3: "Clear and hypothesis driven communication", soft_4: "Proven team leadership",
+                
+                cat5: "5. Personal Drive (The Grit Factor)",
+                grit_ath: "Competitive Athletics",
+                ath_1: "Active Mountain Bike Racer and Cross Country Runner",
+                ath_2: "Instills resilience, discipline, and structured preparation",
+                grit_mech: "Hands On Technical Skills",
+                mech_1: "4 years of experience as a Bicycle Mechanic",
+                mech_2: "Strong attention to detail and practical problem solving"
             },
             de: {
                 title: "Davide Ghielmettis Portfolio",
+                motto_label: "Motto:",
+                motto: "Andare sempre avanti",
+                phone_label: "Telefon:",
                 bio: "Hallo und willkommen! Ich bin Master-Kandidat in International Business, der gerne komplexe Probleme löst und Geschäftsprozesse optimiert. Ich kombiniere eine analytische Denkweise mit einem stark kollaborativen Ansatz, um akademisches Wissen und bisherige Erfahrungen in reale Lösungen umzusetzen.",
+                
+                lang_it: "Italienisch", lang_en: "Englisch", lang_de: "Deutsch", lang_fr: "Französisch", lang_es: "Spanisch", lang_ch: "Schweizerdeutsch",
+                native: "Muttersprache", fluent: "Fließend", intermediate: "Mittelstufe", understanding: "Verständnis der Sprache",
+                
+                hobbies_title: "Leidenschaften & Hobbys",
+                hob_sports: "Radfahren & Laufen (Sport)", hob_guitar: "Gitarre spielen", hob_tech: "Tech & Ingenieurwesen", hob_motor: "Motorsport", hob_neuro: "Neurowissenschaften",
+                
                 perspective: "Internationale Perspektive",
-                native: "Muttersprache",
-                fluent: "Fließend",
-                intermediate: "Mittelstufe",
-                understanding: "Verständnis der Sprache",
                 clickHint: "Klicken Sie auf eine markierte Kategorie, um deren Inhalt zu erweitern oder zu reduzieren.",
+                
                 cat1: "1. Berufserfahrung",
+                exp_cern: "CERN (Daten & Betrieb)",
+                cern_1: "Verwaltete ein komplexes digitales Ökosystem mit über 35.000 Lieferanten",
+                cern_2: "Entwickelte KPIs mit MS Power BI",
+                cern_3: "Übersetzte große Datensätze in umsetzbare Erkenntnisse für Stakeholder",
+                exp_kpmg: "KPMG (Finanzielle Strenge & Compliance)",
+                kpmg_1: "Erstellte Prüfungsdokumentationen zur Unterstützung von Rechnungslegungskontrollen",
+                kpmg_2: "Formalisierte und überprüfte Jahresabschlüsse und zugehörige Dokumentationen",
+                exp_usi: "USI (Forschung & Analyse)",
+                usi_1: "Führte hypothesengesteuerte Forschung durch",
+                usi_2: "Sammelte Daten und führte Verhaltensanalysen durch",
+                
                 cat2: "2. Tech & Digitale Innovation",
+                tech_ai: "Fortgeschrittene KI-Anwendung",
+                ai_1: "Sehr gute Kenntnisse in Large Language Models (LLMs) und Prompt Engineering",
+                ai_2: "Erfahrung mit Agentic AI Tools und Digital Twins Workflows",
+                ai_3: "Kritisches Bewusstsein für KI-Einschränkungen wie Halluzinationen und Datenschutz",
+                tech_biz: "Business Design & Software Stack",
+                biz_1: "Abgeschlossenes Innosuisse Business Concept Start Up Training",
+                biz_2: "Erfahren in Geschäftsmodellgestaltung und Validierung digitaler Produkte",
+                biz_3: "Kenntnisse in: MS Power BI, Confluence, Qualtrics, Adobe Suite, Canva, Videobearbeitung",
+                biz_4: "Grundkenntnisse: HTML, RStudio, DAX",
+                
                 cat3: "3. Akademische Grundlage",
+                acad_zhaw: "MSc International Business (ZHAW)",
+                zhaw_1: "Fokus auf Strategisches Management und organisatorische Transformation",
+                zhaw_2: "Löste reale Beratungsfälle mit Accenture, Horváth und Mammut",
+                acad_usi: "BSc Economics (USI)",
+                usi_bsc_1: "Ausgezeichnet mit dem Top-5-Leistungsstipendium der Wirtschaftsfakultät",
+                usi_bsc_2: "Spezialisierung im Bereich Management",
+                
                 cat4: "4. Beratung & Kommunikationsfähigkeiten",
-                cat5: "5. Persönlicher Antrieb (The Grit Factor)"
+                skill_lang: "Globale Sprachen",
+                lang_1: "Italienisch: Muttersprache", lang_2: "Englisch: Fließend", lang_3: "Deutsch: Fließend", lang_4: "Französisch: Fließend", lang_5: "Spanisch: Mittelstufe", lang_6: "Schweizerdeutsch: Verständnis der Sprache",
+                skill_soft: "Soft Skills",
+                soft_1: "Interkulturelles Stakeholder-Management", soft_2: "Mindset zur Prozessoptimierung", soft_3: "Klare und hypothesengesteuerte Kommunikation", soft_4: "Nachgewiesene Teamführung",
+                
+                cat5: "5. Persönlicher Antrieb (The Grit Factor)",
+                grit_ath: "Wettkampfsport",
+                ath_1: "Aktiver Mountainbike-Rennfahrer und Cross-Country-Läufer",
+                ath_2: "Fördert Belastbarkeit, Disziplin und strukturierte Vorbereitung",
+                grit_mech: "Praktische technische Fähigkeiten",
+                mech_1: "4 Jahre Erfahrung als Fahrradmechaniker",
+                mech_2: "Starke Liebe zum Detail und praktische Problemlösung"
             },
             fr: {
                 title: "Portfolio de Davide Ghielmetti",
+                motto_label: "Devise :",
+                motto: "Andare sempre avanti",
+                phone_label: "Téléphone :",
                 bio: "Bonjour et bienvenue ! Je suis un candidat à la maîtrise en commerce international qui aime résoudre des problèmes complexes et optimiser les processus commerciaux. Je combine un esprit analytique avec une approche très collaborative pour transformer les connaissances académiques et l'expérience passée en solutions concrètes.",
+                
+                lang_it: "Italien", lang_en: "Anglais", lang_de: "Allemand", lang_fr: "Français", lang_es: "Espagnol", lang_ch: "Suisse-Allemand",
+                native: "Langue maternelle", fluent: "Courant", intermediate: "Intermédiaire", understanding: "Compréhension de la langue",
+                
+                hobbies_title: "Passions & Loisirs",
+                hob_sports: "Cyclisme & Course à pied", hob_guitar: "Guitare", hob_tech: "Tech & Ingénierie", hob_motor: "Sports mécaniques", hob_neuro: "Neurosciences",
+                
                 perspective: "Perspective Internationale",
-                native: "Langue maternelle",
-                fluent: "Courant",
-                intermediate: "Intermédiaire",
-                understanding: "Compréhension de la langue",
                 clickHint: "Cliquez sur n'importe quelle catégorie en surbrillance pour développer ou réduire son contenu.",
+                
                 cat1: "1. Expérience Professionnelle",
+                exp_cern: "CERN (Données & Opérations)",
+                cern_1: "Gestion d'un écosystème numérique complexe avec plus de 35 000 fournisseurs",
+                cern_2: "Développement de KPI avec MS Power BI",
+                cern_3: "Traduction de grands ensembles de données en informations exploitables",
+                exp_kpmg: "KPMG (Rigueur Financière & Conformité)",
+                kpmg_1: "Préparation de la documentation d'audit pour soutenir les contrôles comptables",
+                kpmg_2: "Formalisation et vérification des états financiers",
+                exp_usi: "USI (Recherche & Analyse)",
+                usi_1: "Recherche axée sur des hypothèses",
+                usi_2: "Collecte de données et analyse comportementale",
+                
                 cat2: "2. Technologie et Innovation Numérique",
+                tech_ai: "Application avancée de l'IA",
+                ai_1: "Maîtrise des grands modèles de langage (LLM) et ingénierie des requêtes",
+                ai_2: "Expérience avec les outils d'IA agentique et les jumeaux numériques",
+                ai_3: "Conscience critique des limites de l'IA (hallucinations, confidentialité)",
+                tech_biz: "Business Design & Stack Logiciel",
+                biz_1: "Formation Business Concept Start-Up d'Innosuisse complétée",
+                biz_2: "Compétences en conception de modèles économiques et validation de produits",
+                biz_3: "Compétences : MS Power BI, Confluence, Qualtrics, Adobe Suite, Canva, montage",
+                biz_4: "Connaissances de base : HTML, RStudio, DAX",
+                
                 cat3: "3. Fondation Académique",
+                acad_zhaw: "MSc International Business (ZHAW)",
+                zhaw_1: "Focus sur la gestion stratégique et la transformation organisationnelle",
+                zhaw_2: "Résolution de cas réels de conseil avec Accenture, Horváth et Mammut",
+                acad_usi: "BSc Economics (USI)",
+                usi_bsc_1: "Bourse de mérite (Top 5) de la Faculté des sciences économiques",
+                usi_bsc_2: "Spécialisation en Management",
+                
                 cat4: "4. Conseil et Compétences en Communication",
-                cat5: "5. Motivation Personnelle (Le Grit Factor)"
+                skill_lang: "Langues Globales",
+                lang_1: "Italien : Langue maternelle", lang_2: "Anglais : Courant", lang_3: "Allemand : Courant", lang_4: "Français : Courant", lang_5: "Espagnol : Intermédiaire", lang_6: "Suisse-Allemand : Compréhension de la langue",
+                skill_soft: "Compétences Interpersonnelles",
+                soft_1: "Gestion interculturelle des parties prenantes", soft_2: "Esprit d'optimisation des processus", soft_3: "Communication claire et structurée", soft_4: "Leadership d'équipe prouvé",
+                
+                cat5: "5. Motivation Personnelle (Le Grit Factor)",
+                grit_ath: "Athlétisme de compétition",
+                ath_1: "Coureur actif de VTT et de cross-country",
+                ath_2: "Inculque la résilience, la discipline et la préparation structurée",
+                grit_mech: "Compétences techniques pratiques",
+                mech_1: "4 ans d'expérience en tant que mécanicien de vélos",
+                mech_2: "Grande attention aux détails et résolution pratique de problèmes"
             }
         };
 
