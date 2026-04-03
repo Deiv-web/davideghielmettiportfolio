@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Mind Map: Davide Ghielmetti</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #1a365d;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Interactive Tree CSS */
+        ul, #myUL {
+            list-style-type: none;
+        }
+        #myUL {
+            margin: 0;
+            padding: 0;
+        }
+        .caret {
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 5px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+        .caret::before {
+            content: "\25B6";
+            color: black;
+            display: inline-block;
+            margin-right: 8px;
+            transition: transform 0.2s ease;
+        }
+        .caret-down::before {
+            transform: rotate(90deg);
+        }
+        .nested {
+            display: none;
+            padding-left: 30px;
+            border-left: 2px solid #e2e8f0;
+            margin-left: 15px;
+            margin-bottom: 10px;
+        }
+        .active {
+            display: block;
+        }
+        
+        /* Distinct Category Colors */
+        .cat-1 { background-color: #e0f2fe; color: #0369a1; border-left: 4px solid #0284c7; }
+        .cat-2 { background-color: #dcfce7; color: #15803d; border-left: 4px solid #16a34a; }
+        .cat-3 { background-color: #f3e8ff; color: #7e22ce; border-left: 4px solid #9333ea; }
+        .cat-4 { background-color: #ffedd5; color: #c2410c; border-left: 4px solid #ea580c; }
+        .cat-5 { background-color: #fee2e2; color: #b91c1c; border-left: 4px solid #dc2626; }
+        
+        /* Leaf nodes styling */
+        .leaf {
+            padding: 6px 0 6px 20px;
+            position: relative;
+            color: #475569;
+        }
+        .leaf::before {
+            content: "\2022";
+            color: #94a3b8;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        /* Sub-category styling */
+        .sub-cat {
+            font-weight: 600;
+            color: #334155;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Logo styling */
+        .org-logo {
+            height: 20px;
+            width: 20px;
+            object-fit: contain;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+        
+        /* Video wrapper styling */
+        .video-wrapper {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Davide Ghielmetti - Interactive Professional Profile</h1>
+        <p><strong>Motto:</strong> "Andare sempre avanti"</p>
+        <p><em>Click on any highlighted category to expand or collapse its contents.</em></p>
+
+        <ul id="myUL">
+            <li><span class="caret cat-1">1. Professional Experience</span>
+                <ul class="nested">
+                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/CERN_logo_badge.svg" alt="CERN Logo" class="org-logo"> CERN (Data & Operations)</span>
+                        <ul class="nested">
+                            <li class="leaf">Managed complex digital ecosystem with over 35,000 suppliers</li>
+                            <li class="leaf">Developed KPIs using MS Power BI</li>
+                            <li class="leaf">Translated large datasets into actionable stakeholder insights</li>
+                        </ul>
+                    </li>
+                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/d/db/KPMG_blue_logo.svg" alt="KPMG Logo" class="org-logo"> KPMG (Financial Rigor & Compliance)</span>
+                        <ul class="nested">
+                            <li class="leaf">Prepared audit documentation and work papers to support accounting controls</li>
+                            <li class="leaf">Formalized and verified financial statements and related documentation</li>
+                        </ul>
+                    </li>
+                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/USI_Logo.svg" alt="USI Logo" class="org-logo" style="background-color: white; padding: 2px;"> USI (Research & Analysis)</span>
+                        <ul class="nested">
+                            <li class="leaf">Conducted hypothesis driven research</li>
+                            <li class="leaf">Collected data and performed behavioral analysis</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li><span class="caret cat-2">2. Tech & Digital Innovation</span>
+                <ul class="nested">
+                    <li><span class="caret sub-cat">Advanced AI Application</span>
+                        <ul class="nested">
+                            <li class="leaf">Proficient with Large Language Models (LLMs) and prompt engineering</li>
+                            <li class="leaf">Experienced with Agentic AI Tools and Digital Twins workflows</li>
+                            <li class="leaf">Critical awareness of AI limitations like hallucinations and data privacy</li>
+                        </ul>
+                    </li>
+                    <li><span class="caret sub-cat">Business Design & Software Stack</span>
+                        <ul class="nested">
+                            <li class="leaf">Completed Innosuisse Business Concept Start Up Training</li>
+                            <li class="leaf">Skilled in business model design and digital product validation</li>
+                            <li class="leaf">Skilled in: MS Power BI, Confluence, Qualtrics, Adobe Suite, Canva, Editing softwares</li>
+                            <li class="leaf">Base knowledge of: HTML, RStudio, DAX</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li><span class="caret cat-3">3. Academic Foundation</span>
+                <ul class="nested">
+                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/ZHAW_Logo.svg" alt="ZHAW Logo" class="org-logo"> MSc International Business (ZHAW)</span>
+                        <ul class="nested">
+                            <li class="leaf">Focus on Strategic Management and Organizational Transformation</li>
+                            <li class="leaf">Solved real world consulting cases with Accenture, Horváth, and Mammut</li>
+                            <li class="video-wrapper">
+                                <a href="https://www.youtube.com/watch?v=8OxW1bwaPZw" target="_blank" style="display: inline-block; position: relative; text-decoration: none;">
+                                    <img src="https://img.youtube.com/vi/8OxW1bwaPZw/maxresdefault.jpg" alt="ZHAW MSc International Business Video" width="400" style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                    
+                                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 0, 0, 0.8); color: white; width: 60px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                        &#9658;
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span class="caret sub-cat"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/USI_Logo.svg" alt="USI Logo" class="org-logo" style="background-color: white; padding: 2px;"> BSc Economics (USI)</span>
+                        <ul class="nested">
+                            <li class="leaf">Awarded Top 5 Merit Scholarship from the Faculty of Economics</li>
+                            <li class="leaf">Specialization in Management</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li><span class="caret cat-4">4. Consulting & Communication Skills</span>
+                <ul class="nested">
+                    <li><span class="caret sub-cat">Global Languages</span>
+                        <ul class="nested">
+                            <li class="leaf">Italian: Native</li>
+                            <li class="leaf">English: Fluent</li>
+                            <li class="leaf">German: Fluent</li>
+                            <li class="leaf">French: Fluent</li>
+                            <li class="leaf">Spanish: Intermediate</li>
+                            <li class="leaf">Swiss-German: Understanding of the language</li>
+                        </ul>
+                    </li>
+                    <li><span class="caret sub-cat">Soft Skills</span>
+                        <ul class="nested">
+                            <li class="leaf">Cross cultural stakeholder management</li>
+                            <li class="leaf">Process optimization mindset</li>
+                            <li class="leaf">Clear and hypothesis driven communication</li>
+                            <li class="leaf">Proven team leadership</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li><span class="caret cat-5">5. Personal Drive (The Grit Factor)</span>
+                <ul class="nested">
+                    <li><span class="caret sub-cat">Competitive Athletics</span>
+                        <ul class="nested">
+                            <li class="leaf">Active Mountain Bike Racer and Cross Country Runner</li>
+                            <li class="leaf">Instills resilience, discipline, and structured preparation</li>
+                        </ul>
+                    </li>
+                    <li><span class="caret sub-cat">Hands On Technical Skills</span>
+                        <ul class="nested">
+                            <li class="leaf">4 years of experience as a Bicycle Mechanic</li>
+                            <li class="leaf">Strong attention to detail and practical problem solving</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var toggler = document.getElementsByClassName("caret");
+        var i;
+
+        for (i = 0; i < toggler.length; i++) {
+            toggler[i].addEventListener("click", function() {
+                // Find the next element sibling which should be the nested UL
+                var nestedUl = this.nextElementSibling;
+                if(nestedUl && nestedUl.classList.contains("nested")) {
+                    nestedUl.classList.toggle("active");
+                    this.classList.toggle("caret-down");
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
