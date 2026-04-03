@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Davide Ghielmetti</title>
+    
+    <script src="https://unpkg.com/three"></script>
+    <script src="https://unpkg.com/globe.gl"></script>
+
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -134,23 +138,53 @@
             text-decoration: none;
         }
 
+        /* 3D Globe Container */
+        .globe-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            background-color: #020617; /* Deep techy blue/black */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .globe-overlay-text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #f8fafc;
+            font-size: 1.4rem;
+            font-weight: 700;
+            z-index: 10;
+            pointer-events: none;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
         /* --- MOBILE OPTIMIZATION --- */
         @media screen and (max-width: 768px) {
             body {
-                padding: 15px; /* Reduce outer padding */
+                padding: 15px;
             }
             .container {
-                padding: 20px; /* Reduce inner container padding */
+                padding: 20px;
             }
             h1 {
-                font-size: 1.5rem; /* Slightly smaller title */
+                font-size: 1.5rem;
             }
             .contact-container {
-                flex-direction: column; /* Stack contact details on mobile */
+                flex-direction: column;
                 gap: 8px;
             }
             .nested {
-                padding-left: 15px; /* Reduce indentation for narrow screens */
+                padding-left: 15px;
+            }
+            .globe-wrapper {
+                height: 300px; /* Slightly smaller globe on mobile */
+            }
+            .globe-overlay-text {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -165,6 +199,11 @@
             <span class="contact-item"><strong>Email:</strong> <a href="mailto:davide.ghielmetti@gmail.com">davide.ghielmetti@gmail.com</a></span>
             <span class="contact-item"><strong>Phone:</strong> <a href="tel:+393519635441">+39 351 963 5441</a></span>
             <span class="contact-item"><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/davide-ghielmetti-033732a5" target="_blank">davide-ghielmetti-033732a5</a></span>
+        </div>
+
+        <div class="globe-wrapper" id="globeContainer">
+            <div class="globe-overlay-text">International Perspective</div>
+            <div id="globeViz" style="width: 100%; height: 100%;"></div>
         </div>
         
         <p><em>Click on any highlighted category to expand or collapse its contents.</em></p>
@@ -223,7 +262,6 @@
                             <li class="video-wrapper">
                                 <a href="https://www.youtube.com/watch?v=8OxW1bwaPZw" target="_blank" style="display: inline-block; position: relative; text-decoration: none; width: 100%; max-width: 400px;">
                                     <img src="https://img.youtube.com/vi/8OxW1bwaPZw/maxresdefault.jpg" alt="ZHAW MSc International Business Video" class="video-thumbnail">
-                                    
                                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 0, 0, 0.8); color: white; width: 60px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
                                         &#9658;
                                     </div>
@@ -283,12 +321,10 @@
     </div>
 
     <script>
+        // --- Interactive Tree Logic ---
         var toggler = document.getElementsByClassName("caret");
-        var i;
-
-        for (i = 0; i < toggler.length; i++) {
+        for (var i = 0; i < toggler.length; i++) {
             toggler[i].addEventListener("click", function() {
-                // Find the next element sibling which should be the nested UL
                 var nestedUl = this.nextElementSibling;
                 if(nestedUl && nestedUl.classList.contains("nested")) {
                     nestedUl.classList.toggle("active");
@@ -296,6 +332,48 @@
                 }
             });
         }
+
+        // --- 3D Globe Logic ---
+        const elem = document.getElementById('globeViz');
+        const globeContainer = document.getElementById('globeContainer');
+
+        // Location data (Lat/Lng for all your cities)
+        const myLocations = [
+            { lat: 31.2304, lng: 121.4737, label: 'Shanghai, China' },
+            { lat: 42.8021, lng: 13.9488, label: 'Tortoreto Lido, Italy' },
+            { lat: 45.8081, lng: 9.0852, label: 'Como, Italy' },
+            { lat: 51.2277, lng: 6.7735, label: 'Düsseldorf, Germany' },
+            { lat: 47.2079, lng: 7.5371, label: 'Solothurn, Switzerland' },
+            { lat: 46.2044, lng: 6.1432, label: 'Geneva, Switzerland' },
+            { lat: 47.4982, lng: 8.7293, label: 'Winterthur, Switzerland' }
+        ];
+
+        // Initialize Globe
+        const globe = Globe()
+            .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-dark.jpg') // Sleek dark map
+            .backgroundColor('rgba(0,0,0,0)') // Transparent background
+            .pointsData(myLocations)
+            .pointAltitude(0.05) // Pin height
+            .pointColor(() => '#0ea5e9') // Neon blue pins
+            .pointRadius(0.5) // Pin size
+            .pointLabel('label') // Hover text
+            .width(globeContainer.clientWidth)
+            .height(globeContainer.clientHeight)
+            (elem);
+
+        // Configure controls
+        globe.controls().autoRotate = true;
+        globe.controls().autoRotateSpeed = 1.2;
+        globe.controls().enableZoom = true;
+        
+        // Focus on Europe/Asia initially
+        globe.pointOfView({ lat: 40, lng: 40, altitude: 2 });
+
+        // Make globe responsive on window resize
+        window.addEventListener('resize', () => {
+            globe.width(globeContainer.clientWidth);
+            globe.height(globeContainer.clientHeight);
+        });
     </script>
 
 </body>
