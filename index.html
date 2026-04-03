@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Mind Map: Davide Ghielmetti</title>
+    <title>Davide Ghielmetti</title>
     
     <script src="https://unpkg.com/three"></script>
     <script src="https://unpkg.com/globe.gl"></script>
@@ -370,7 +370,7 @@
             (elem);
 
         // --- Custom Globe Tour Script ---
-        globe.controls().autoRotate = false; // Disable default spin to use custom tour
+        globe.controls().autoRotate = false; // Disable default spin to use our custom tour
         globe.controls().enableZoom = true;
 
         let isTouring = true;
@@ -385,12 +385,23 @@
             
             const loc = myLocations[currentLocationIndex];
             
-            // Transition camera to current location smoothly over 2 seconds
-            globe.pointOfView({ lat: loc.lat, lng: loc.lng, altitude: 1.2 }, 2000);
+            // 1. Calculate distance from the PREVIOUS location to determine how far the camera traveled
+            let prevIndex = currentLocationIndex === 0 ? myLocations.length - 1 : currentLocationIndex - 1;
+            const prevLoc = myLocations[prevIndex];
+            const dist = Math.sqrt(Math.pow(loc.lat - prevLoc.lat, 2) + Math.pow(loc.lng - prevLoc.lng, 2));
             
-            // Proceed to the next location after a 5 second pause
+            // 2. Dynamic Altitude Math: 
+            // If the distance is small (e.g. within Europe), altitude drops down to 0.4 (Zoomed In).
+            // If the distance is huge (e.g. China to Italy), altitude raises to 1.5 (Zoomed Out).
+            const dynamicAltitude = Math.max(0.4, Math.min(1.5, dist * 0.06));
+            
+            // 3. Transition camera to the new coordinates over 1 second (1000ms)
+            globe.pointOfView({ lat: loc.lat, lng: loc.lng, altitude: dynamicAltitude }, 1000);
+            
             currentLocationIndex = (currentLocationIndex + 1) % myLocations.length;
-            setTimeout(startTour, 5000);
+            
+            // 4. Trigger the next flight after 2 seconds (1s flight time + 1s pause at the location)
+            setTimeout(startTour, 2000);
         }
 
         // Start tour 1 second after page load
